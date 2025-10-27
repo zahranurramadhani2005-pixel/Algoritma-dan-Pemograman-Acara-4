@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Statistik Kabupaten Pringsewu</title>
+
+  <!-- Font Awesome (ikon link) -->
+  <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  >
+
+  <!-- Font Merriweather -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif, sans-serif;
+      margin: 0;
+      background-color: #e0e5d4;
+      overflow-y: scroll;
+    }
+
+    /* HEADER */
+    header {
+      background-color: #eae2b4;
+      border-bottom: 4px solid #5f5b42;
+      padding: 20px 40px;
+      color: #0d4138;
+      font-family: "Merriweather", "Times New Roman", serif;
+      position: relative;
+      opacity: 0;
+      animation: fadeInHeader 1.2s ease forwards;
+    }
+
+    @keyframes fadeInHeader {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    /* Background bergerak di header */
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 100%;
+      background-image: url('IKON_PRINGSEWU.png'); /* Ganti dengan gambar yang kamu pilih */
+      background-size: contain;
+      background-repeat: no-repeat;
+      animation: slideBackground 10s infinite linear;
+    }
+
+    @keyframes slideBackground {
+      0% { left: 0; }
+      100% { left: -50%; }
+    }
+
+    /* Logo */
+    .logo-section img {
+      height: 100px;
+      width: auto;
+      border-radius: 8px;
+      border: 2px solid #00796b;
+      padding: 4px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease;
+      opacity: 0;
+      animation: fadeInLogo 1.5s ease forwards 0.3s;
+    }
+
+    @keyframes fadeInLogo {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .logo-section img:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 15px rgba(0, 121, 107, 0.4);
+    }
+
+    .divider {
+      width: 2px;
+      height: 80px;
+      background-color: #00796b;
+      margin: 0 25px;
+      border-radius: 2px;
+    }
+
+    .title-section {
+      text-align: right;
+      flex: 1;
+      opacity: 0;
+      animation: fadeInTitle 1.5s ease forwards 0.6s;
+    }
+
+    @keyframes fadeInTitle {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .title-section h2 {
+      margin: 0;
+      font-size: 26px;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+    }
+
+    .title-section h3 {
+      margin: 5px 0 0;
+      font-size: 18px;
+      font-weight: 500;
+      color: #2f3634;
+    }
+
+    /* KONTEN */
+    .content {
+      max-width: 900px;
+      margin: 20px auto;
+      background: rgb(242, 242, 241);
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 5px;
+    }
+
+    .content p {
+      text-align: justify;
+      line-height: 1.7;
+    }
+
+    .highlight {
+      background-color: #e0eec0;
+      border: 1px solid #999;
+      padding: 10px;
+      margin-top: 15px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #444;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #a5d2d6;
+    }
+
+    table a {
+      color: #0f1312;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    table a:hover {
+      text-decoration: underline;
+      color: #004d40;
+    }
+
+    table a i {
+      margin-left: 4px;
+      color: #00796b;
+      font-size: 13px;
+    }
+
+    /* PETA ADMINISTRATIF */
+    #map {
+      width: 100%;
+      border: 2px solid #004d40;
+      border-radius: 5px;
+      margin-top: 20px;
+      text-align: center;
+      background-color: #f0f0f0;
+      padding: 10px;
+    }
+
+    #map img {
+      width: 100%;
+      max-width: 850px;
+      height: auto;
+      border-radius: 5px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #1e5249;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+    }
+
+    /* RESPONSIF */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .divider { display: none; }
+      .title-section { text-align: center; }
+      .logo-section img { height: 90px; margin-bottom: 10px; }
+      .content { width: 90%; padding: 10px; }
+      table { font-size: 14px; }
+      #map img { width: 100%; max-width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <div class="logo-section">
+        <img src="LOGO_KABUPATEN_PRINGSEWU.png" alt="Lambang Kabupaten Pringsewu">
+      </div>
+      <div class="divider"></div>
+      <div class="title-section">
+        <h2>Data Statistik</h2>
+        <h3>Kabupaten Pringsewu Provinsi Lampung Tahun 2025</h3>
+      </div>
+    </div>
+  </header>
+
+  <!-- KONTEN -->
+  <div class="content">
+    <h3>Kabupaten Pringsewu</h3>
+    <p>
+      Kabupaten Pringsewu merupakan salah satu kabupaten di Provinsi Lampung yang dibentuk melalui 
+      Undang-Undang Nomor 48 Tahun 2008 sebagai hasil pemekaran dari Kabupaten Tanggamus dan diresmikan pada tahun 2009.
+      Luas wilayahnya sekitar 625 km² dengan pusat pemerintahan berada di Kecamatan Pringsewu. Secara geografis, 
+      kabupaten ini terletak di jalur strategis antara Kota Bandar Lampung dan Kabupaten Tanggamus, menjadikannya kawasan penting bagi arus transportasi dan perdagangan.
+    </p>
+
+    <div class="highlight">
+      <h4>Wisata Kabupaten Pringsewu</h4>
+      <div class="info-section">
+        <img src="TALANGINDAH.jpg" alt="Talang Indah Pringsewu">
+        <p><b>Talang Indah Pringsewu</b><br>
+        Destinasi wisata alam yang terkenal dengan jembatan gantung dan pemandangan perbukitan indah. 
+        Tempat ini menjadi salah satu ikon wisata unggulan Kabupaten Pringsewu.</p>
+      </div>
+    </div>
+
+    <!-- TABEL DATA KECAMATAN -->
+    <h3 style="margin-top:30px;">Data Statistik Kecamatan</h3>
+    <table>
+      <tr>
+        <th>No</th>
+        <th>Nama Kecamatan</th>
+        <th>Luas Wilayah (km²)</th>
+        <th>Jumlah Penduduk</th>
+        <th>Kepadatan Penduduk (jiwa/km²)</th>
+      </tr>
+      <tr><td>1</td><td><a href="https://id.wikipedia.org/wiki/Kecamatan_Pringsewu">Pringsewu</a></td><td>63.75</td><td>52.000</td><td>815</td></tr>
+      <tr><td>2</td><td><a href="https://id.wikipedia.org/wiki/Kecamatan_Pagelaran">Pagelaran</a></td><td>70.20</td><td>45.300</td><td>645</td></tr>
+      <tr><td>3</td><td><a href="https://id.wikipedia.org/wiki/Kecamatan_Gading_Rejo">Gading Rejo</a></td><td>65.80</td><td>48.100</td><td>731</td></tr>
+      <tr><td>4</td><td><a href="https://id.wikipedia.org/wiki/Kecamatan_Pardasuka">Pardasuka</a></td><td>60.00</td><td>40.000</td><td>667</td></tr>
+      <tr><td>5</td><td><a href="https://id.wikipedia.org/wiki/Kecamatan_Ambarawa">Ambarawa</a></td><td>57.10</td><td>38.200</td><td>669</td></tr>
+      <tr><td>6</td><td><a href="https://id.wikipedia.org/wiki/Kecamatan_Sukoharjo">Sukoharjo</a></td><td>58.30</td><td>37.500</td><td>643</td></tr>
+    </table>
+
+    <!-- PETA ADMINISTRATIF -->
+    <h3 style="margin-top:30px;">Peta Administratif Kabupaten Pringsewu</h3>
+    <div id="map">
+      <img src="peta pringsewu.jpg" alt="Peta Administratif Kabupaten Pringsewu">
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Kabupaten Pringsewu | Data Statistik</p>
+  </footer>
+
+</body>
+</html>
